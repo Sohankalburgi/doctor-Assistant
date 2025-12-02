@@ -3,6 +3,7 @@
 import { MessageSquare, Pill, Languages, LogOut, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { useEffect, useState } from "react"
 
 interface DashboardSidebarProps {
     activeTab: string
@@ -30,6 +31,29 @@ export default function DashboardSidebar({ activeTab, onTabChange }: DashboardSi
             description: "Multi-language support",
         },
     ]
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+
+    useEffect(()=>{
+        const user = localStorage.getItem("user");
+
+        if(!user){
+            //redirect to login page
+            window.location.href = "/login";
+        }
+
+        const userObj = JSON.parse(user || "{}");
+        setEmail(userObj.email);
+        setName(userObj.name);
+
+    },[])
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        window.location.href = "/login";
+    }
+    
 
     return (
         <div className="w-64 border-r border-border/50 bg-card/40 backdrop-blur-sm flex flex-col h-screen sticky top-0">
@@ -84,14 +108,15 @@ export default function DashboardSidebar({ activeTab, onTabChange }: DashboardSi
                             <User className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-foreground truncate">Dr. Name</p>
-                            <p className="text-xs text-muted-foreground truncate">your@email.com</p>
+                            <p className="text-sm font-semibold text-foreground truncate">{name}</p>
+                            <p className="text-xs text-muted-foreground truncate">{email}</p>
                         </div>
                     </div>
                     <Button
                         variant="outline"
                         size="sm"
                         className="w-full text-xs flex items-center justify-center gap-1 bg-transparent"
+                        onClick={()=> handleLogout()}
                     >
                         <LogOut className="w-3 h-3" />
                         Logout

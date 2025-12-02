@@ -13,7 +13,7 @@ export async function stt(file: File, language : string): Promise<string> {
         const transcription = await groq.audio.transcriptions.create({
             file: new File([buffer], file.name, { type: file.type }),
             model: "whisper-large-v3",
-            temperature: 0,
+            temperature: 0.2,
             language: language,
             response_format: "verbose_json",
         });

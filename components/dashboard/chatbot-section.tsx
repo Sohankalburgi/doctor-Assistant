@@ -108,8 +108,8 @@ export default function ChatbotSection() {
                         <ScrollArea className="h-full pr-4">
                             <div className="space-y-4">
                                 {messages.map((msg) => (
-                                    <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                                        <div className={`max-w-xs lg:max-w-md ${msg.sender === "user" ? "bg-primary text-primary-foreground rounded-br-none" : ""}`}>
+                                    <div key={msg.id} className={`flex w-full ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+                                        <div className={`${msg.sender === "user" ? "max-w-xs lg:max-w-md bg-primary text-primary-foreground rounded-br-none" : "w-full"}`}>
                                             {msg.sender === "user" ? (
                                                 <div className="px-4 py-3 rounded-lg animate-in fade-in-50 slide-in-from-bottom-2">
                                                     <p className="text-sm">{msg.text}</p>

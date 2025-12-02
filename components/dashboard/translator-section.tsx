@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Volume2, Copy, Check, Mic, Square, Loader2, AlertCircle } from "lucide-react"
+import { Volume2, Copy, Check, Mic, Square, Loader2, AlertCircle, Download } from "lucide-react"
+import { exportTranslation } from "@/lib/pdf-export"
 
 const LANGUAGES = [
     { code: "en", name: "English" },
@@ -214,6 +215,20 @@ export default function TranslatorSection() {
         setTranslatedText(translated)
     }
 
+    const handleExportPDF = async () => {
+        if (sourceText || translatedText) {
+            const sourceLangName = LANGUAGES.find((l) => l.code === sourceLang)?.name || sourceLang
+            const targetLangName = LANGUAGES.find((l) => l.code === targetLang)?.name || targetLang
+            await exportTranslation(
+                sourceText || "(No source text)",
+                translatedText || "(No translation)",
+                sourceLangName,
+                targetLangName,
+                `translation-${Date.now()}.pdf`
+            )
+        }
+    }
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Audio Recorder Section */}
@@ -359,6 +374,9 @@ export default function TranslatorSection() {
                                     </Button>
                                     <Button variant="outline" size="icon" onClick={handleCopy}>
                                         {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
+                                    </Button>
+                                    <Button variant="outline" size="icon" onClick={handleExportPDF} title="Export as PDF">
+                                        <Download className="w-4 h-4" />
                                     </Button>
                                 </>
                             )}
