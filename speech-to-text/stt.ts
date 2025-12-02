@@ -14,7 +14,11 @@ export async function stt(file: File, language : string): Promise<string> {
             file: new File([buffer], file.name, { type: file.type }),
             model: "whisper-large-v3",
 <<<<<<< HEAD
+<<<<<<< HEAD
             temperature: 0.2,
+=======
+            temperature: 0,
+>>>>>>> 3facdbc (sst)
 =======
             temperature: 0,
 >>>>>>> 3facdbc (sst)
