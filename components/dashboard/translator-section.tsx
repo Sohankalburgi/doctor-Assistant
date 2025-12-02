@@ -5,16 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import { Volume2, Copy, Check, Mic, Square, Loader2, AlertCircle, Download } from "lucide-react"
 import { exportTranslation } from "@/lib/pdf-export"
-=======
-import { Volume2, Copy, Check, Mic, Square, Loader2, AlertCircle } from "lucide-react"
->>>>>>> 3facdbc (sst)
-=======
-import { Volume2, Copy, Check, Mic, Square, Loader2, AlertCircle } from "lucide-react"
->>>>>>> 3facdbc (sst)
+
+
 
 const LANGUAGES = [
     { code: "en", name: "English" },
