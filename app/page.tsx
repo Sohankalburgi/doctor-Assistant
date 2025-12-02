@@ -68,7 +68,7 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-xl leading-relaxed">
-                  Expert medical insights, affordable medications, and multilingual support—all designed for rural
+                  Expert medical insights, affordable medications, and multilingual for removing language barrier support—all designed for rural
                   doctors who care.
                 </p>
               </div>
@@ -146,7 +146,7 @@ export default function Home() {
                     <CheckCircle className="w-5 h-5 text-accent" />
                   </div>
                   <h3 className="font-bold text-foreground mb-2">Multi-Language</h3>
-                  <p className="text-sm text-muted-foreground">Support in your preferred language</p>
+                  <p className="text-sm text-muted-foreground">Support in your preferred language to break language barrier between patient and doctor</p>
                 </div>
               </div>
             </div>
