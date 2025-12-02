@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { deepAgent } from "@/deep-agent/deepAgent";
 import { supervisorAgent } from "@/deep-agent/supervisiorAgent";
 import { HumanMessage } from "@langchain/core/messages";
 
