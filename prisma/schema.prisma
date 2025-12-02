@@ -23,7 +23,10 @@ model Chat {
   id              Int      @id @default(autoincrement())
   userId          Int
   user            User     @relation(fields: [userId], references: [id])
-  chats           Json?
+  chats           Json[]
+  patientName    String
+  patientAge     Int?
+  patientGender  String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

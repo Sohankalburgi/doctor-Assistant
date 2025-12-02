@@ -10,6 +10,10 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Send, Loader2 } from "lucide-react"
 import ChatMarkdown from "./chat-markdown"
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
+import { Label } from "../ui/label"
+
 interface Message {
     id: string
     text: string
@@ -29,6 +33,50 @@ export default function ChatbotSection() {
     const [inputValue, setInputValue] = useState("")
     const [loading, setLoading] = useState(false)
     const scrollRef = useRef<HTMLDivElement>(null)
+    const [open, setOpen] = useState(false);
+
+    const [patientName, setPatientName] = useState("");
+    const [patientAge, setPatientAge] = useState("");
+    const [patientGender, setPatientGender] = useState("");
+    const handleSaveChat = async () => {
+        try {
+            const userId = 1; // Replace with actual authenticated user id
+
+            const response = await fetch("/api/savechat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId,
+                    patientName,
+                    patientAge,
+                    patientGender,
+                    chats: messages.map((m) => ({
+                        sender: m.sender,
+                        text: m.text,
+                        timestamp: m.timestamp,
+                    })),
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || "Failed to save chat");
+                return;
+            }
+
+            alert("Chat saved successfully!");
+            setOpen(false);
+            setPatientName("");
+            setPatientAge("");
+            setPatientGender("");
+        } catch (err) {
+            console.error(err);
+            alert("Error saving chat");
+        }
+    };
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -98,6 +146,65 @@ export default function ChatbotSection() {
     return (
         <div className="w-full">
             {/* Chat Area */}
+
+            <div className="absolute right-4 top-4 z-50">
+                <Dialog open={open} onOpenChange={setOpen}>
+                    <DialogTrigger asChild>
+                        <Button className="rounded-full shadow-lg">
+                            Save Chat
+                        </Button>
+                    </DialogTrigger>
+
+                    {/* Modal Content */}
+                    <DialogContent className="max-w-md">
+                        <DialogHeader>
+                            <DialogTitle>Save Patient Consultation</DialogTitle>
+                            <DialogDescription>
+                                Enter patient details to save this consultation.
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <div className="space-y-4 py-4">
+                            <div>
+                                <Label>Patient Name</Label>
+                                <Input
+                                    value={patientName}
+                                    onChange={(e) => setPatientName(e.target.value)}
+                                    placeholder="Enter name"
+                                />
+                            </div>
+
+                            <div>
+                                <Label>Age</Label>
+                                <Input
+                                    type="number"
+                                    value={patientAge}
+                                    onChange={(e) => setPatientAge(e.target.value)}
+                                />
+                            </div>
+
+                            <div>
+                                <Label>Gender</Label>
+                                <Select onValueChange={setPatientGender}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select gender" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="male">Male</SelectItem>
+                                        <SelectItem value="female">Female</SelectItem>
+                                        <SelectItem value="other">Other</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        <DialogFooter>
+                            <Button onClick={handleSaveChat}>Save</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            </div>
+            {/* END FLOATING BUTTON */}
             <div className="w-full">
                 <Card className="h-[calc(100vh-200px)] flex flex-col border-border/50 backdrop-blur-sm bg-card/80">
                     <CardHeader className="border-b border-border/50">
