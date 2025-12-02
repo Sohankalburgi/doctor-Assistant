@@ -13,6 +13,7 @@ This document describes the integration of the medicine recommendation API with 
   - Text input for medicine search
   - Real-time API communication
   - Chat-based interface for displaying results
+  - **Full-width table output** for AI responses
   - Loading states and error handling
   - Responsive design
 
@@ -20,10 +21,12 @@ This document describes the integration of the medicine recommendation API with 
 - **Purpose**: Render markdown output including tables
 - **Features**:
   - Supports GitHub Flavored Markdown (GFM) tables
+  - **Full-width table rendering** (100% of chat area)
   - Custom styling for table elements
-  - Responsive table rendering with horizontal scrolling
+  - Custom heading and list styling
   - Dark mode support
-  - Styled headers and rows
+  - Horizontal scroll for large tables on mobile
+  - Smooth hover effects on table rows
 
 #### 3. **Medicine Recommendation API** (`app/api/medicine-recommendation/route.ts`)
 - **Purpose**: Backend endpoint for medicine recommendations
