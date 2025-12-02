@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Send, Loader2 } from "lucide-react"
+import ChatMarkdown from "./chat-markdown"
 
 interface Message {
     id: string
@@ -50,24 +51,55 @@ export default function ChatbotSection() {
         setInputValue("")
         setLoading(true)
 
-        // Simulate specialist response
-        setTimeout(() => {
-            const specialistMessage: Message = {
+        try {
+            // Call the deep agent API
+            const response = await fetch("/api/deepagent", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    prompt: inputValue,
+                }),
+            })
+
+            const data = await response.json()
+
+            if (data.status) {
+                const specialistMessage: Message = {
+                    id: (Date.now() + 1).toString(),
+                    text: data.message || "Unable to generate a response. Please try again.",
+                    sender: "specialist",
+                    timestamp: new Date(),
+                }
+                setMessages((prev) => [...prev, specialistMessage])
+            } else {
+                const errorMessage: Message = {
+                    id: (Date.now() + 1).toString(),
+                    text: `Error: ${data.message || "An error occurred while processing your request."}`,
+                    sender: "specialist",
+                    timestamp: new Date(),
+                }
+                setMessages((prev) => [...prev, errorMessage])
+            }
+        } catch (error) {
+            const errorMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: "Based on your description, I recommend considering the following differential diagnoses and treatment options. Please provide more clinical details for a more accurate assessment.",
+                text: `Error: ${error instanceof Error ? error.message : "Failed to connect to the server."}`,
                 sender: "specialist",
                 timestamp: new Date(),
             }
-            setMessages((prev) => [...prev, specialistMessage])
+            setMessages((prev) => [...prev, errorMessage])
+        } finally {
             setLoading(false)
-        }, 1500)
+        }
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="w-full">
             {/* Chat Area */}
-            <div className="lg:col-span-3">
-                <Card className="h-[600px] flex flex-col border-border/50 backdrop-blur-sm bg-card/80">
+            <div className="w-full">
+                <Card className="h-[calc(100vh-200px)] flex flex-col border-border/50 backdrop-blur-sm bg-card/80">
                     <CardHeader className="border-b border-border/50">
                         <CardTitle>AI Specialist Consultation</CardTitle>
                         <CardDescription>Get expert medical guidance powered by AI</CardDescription>
@@ -77,14 +109,14 @@ export default function ChatbotSection() {
                             <div className="space-y-4">
                                 {messages.map((msg) => (
                                     <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                                        <div
-                                            className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg animate-in fade-in-50 slide-in-from-bottom-2 ${msg.sender === "user"
-                                                    ? "bg-primary text-primary-foreground rounded-br-none"
-                                                    : "bg-secondary text-foreground rounded-bl-none border border-border"
-                                                }`}
-                                        >
-                                            <p className="text-sm">{msg.text}</p>
-                                            
+                                        <div className={`max-w-xs lg:max-w-md ${msg.sender === "user" ? "bg-primary text-primary-foreground rounded-br-none" : ""}`}>
+                                            {msg.sender === "user" ? (
+                                                <div className="px-4 py-3 rounded-lg animate-in fade-in-50 slide-in-from-bottom-2">
+                                                    <p className="text-sm">{msg.text}</p>
+                                                </div>
+                                            ) : (
+                                                <ChatMarkdown text={msg.text} />
+                                            )}
                                         </div>
                                     </div>
                                 ))}
@@ -121,26 +153,6 @@ export default function ChatbotSection() {
                 </Card>
             </div>
 
-            {/* Quick Tips */}
-            <div className="lg:col-span-1">
-                <Card className="border-border/50 backdrop-blur-sm bg-card/80 sticky top-8">
-                    <CardHeader>
-                        <CardTitle className="text-lg">Quick Tips</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                        <div className="text-sm space-y-2">
-                            <p className="font-semibold text-primary">For better guidance:</p>
-                            <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
-                                <li>Provide patient age & gender</li>
-                                <li>Mention relevant symptoms</li>
-                                <li>Include vital signs</li>
-                                <li>Describe medication history</li>
-                                <li>Note any allergies</li>
-                            </ul>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
         </div>
     )
 }

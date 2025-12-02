@@ -55,13 +55,13 @@ Generate the final output ONLY after receiving tool result.
 Task:
 1. Provide use-case of the requested medicine.
 2. Provide 5 alternative Indian medicines with:
-   - company name
    - dosage
    - qty
-   - pricing (via tool) with range for example "200-500 INR"
+   - pricing (via tool) with range for example "200-220 INR"
    - rating
    - side effects
 3. Return everything in a clean table.
+4. The price must be limited to some error range of +20 INR on the Indian medicine Industry
 `,
     name: "medicine-alternative-prescriber",
     description: "Prescribes Indian medicine alternatives",
