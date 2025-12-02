@@ -32,8 +32,7 @@ export default function LoginPage() {
         setError("")
 
         try {
-            // TODO: Replace with actual API call to your backend
-            const response = await fetch("/api/auth/login", {
+            const response = await fetch("/api/signin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -43,11 +42,11 @@ export default function LoginPage() {
 
             if (!response.ok) {
                 const data = await response.json()
-                setError(data.message || "Login failed")
+                setError(data.error || "Login failed")
             } else {
                 const data = await response.json()
-                // Store token and redirect to dashboard
-                localStorage.setItem("token", data.token)
+                // Store user data and redirect to dashboard
+                localStorage.setItem("user", JSON.stringify(data.user))
                 router.push("/dashboard")
             }
         } catch (err) {
