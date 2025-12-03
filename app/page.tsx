@@ -44,7 +44,7 @@ export default function Home() {
 
       {/* Hero Section with Modern Design */}
       <section className="relative overflow-hidden py-20 md:py-32 lg:py-40 
-  bg-gradient-to-br from-[#3477a3] via-[#c9d7dd] to-[#B8FFD9]">
+  bg-gradient-to-br from-[#5b99c2] via-[#c9d7dd] to-[#B8FFD9]">
 
 
         <div className="absolute inset-0 -z-10">
