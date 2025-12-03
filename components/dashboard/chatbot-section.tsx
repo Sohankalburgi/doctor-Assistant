@@ -40,7 +40,13 @@ export default function ChatbotSection() {
     const [patientGender, setPatientGender] = useState("");
     const handleSaveChat = async () => {
         try {
-            const userId = 1; // Replace with actual authenticated user id
+            const user = localStorage.getItem("user");
+            if (!user) {
+                window.location.href = "/login";
+                return;
+            }
+
+            const userId = JSON.parse(user).id;
 
             const response = await fetch("/api/savechat", {
                 method: "POST",

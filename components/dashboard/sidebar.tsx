@@ -1,6 +1,6 @@
 "use client"
 
-import { MessageSquare, Pill, Languages, LogOut, User } from "lucide-react"
+import { MessageSquare, Pill, Languages, LogOut, User, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useEffect, useState } from "react"
@@ -30,15 +30,21 @@ export default function DashboardSidebar({ activeTab, onTabChange }: DashboardSi
             icon: Languages,
             description: "Multi-language support",
         },
+        {
+            id: "patient-records",
+            label: "Patient Records",
+            icon: FileText,
+            description: "View consultation history",
+        },
     ]
 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
 
-    useEffect(()=>{
+    useEffect(() => {
         const user = localStorage.getItem("user");
 
-        if(!user){
+        if (!user) {
             //redirect to login page
             window.location.href = "/login";
         }
@@ -47,13 +53,13 @@ export default function DashboardSidebar({ activeTab, onTabChange }: DashboardSi
         setEmail(userObj.email);
         setName(userObj.name);
 
-    },[])
+    }, [])
 
     const handleLogout = () => {
         localStorage.removeItem("user");
         window.location.href = "/login";
     }
-    
+
 
     return (
         <div className="w-64 border-r border-border/50 bg-card/40 backdrop-blur-sm flex flex-col h-screen sticky top-0">
@@ -81,8 +87,8 @@ export default function DashboardSidebar({ activeTab, onTabChange }: DashboardSi
                             key={item.id}
                             onClick={() => onTabChange(item.id)}
                             className={`w-full text-left p-4 rounded-lg transition-all duration-200 group ${isActive
-                                    ? "bg-primary/10 border border-primary/30 text-primary"
-                                    : "hover:bg-secondary/50 text-muted-foreground hover:text-foreground border border-transparent"
+                                ? "bg-primary/10 border border-primary/30 text-primary"
+                                : "hover:bg-secondary/50 text-muted-foreground hover:text-foreground border border-transparent"
                                 }`}
                         >
                             <div className="flex items-start gap-3">
@@ -116,7 +122,7 @@ export default function DashboardSidebar({ activeTab, onTabChange }: DashboardSi
                         variant="outline"
                         size="sm"
                         className="w-full text-xs flex items-center justify-center gap-1 bg-transparent"
-                        onClick={()=> handleLogout()}
+                        onClick={() => handleLogout()}
                     >
                         <LogOut className="w-3 h-3" />
                         Logout

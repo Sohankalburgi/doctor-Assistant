@@ -13,10 +13,11 @@ import {
   Brain,
   TrendingUp,
 } from "lucide-react"
+import Image from "next/image"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen ">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -42,8 +43,12 @@ export default function Home() {
       </nav>
 
       {/* Hero Section with Modern Design */}
-      <section className="relative overflow-hidden py-20 md:py-32 lg:py-40">
+      <section className="relative overflow-hidden py-20 md:py-32 lg:py-40 
+  bg-gradient-to-br from-[#3477a3] via-[#c9d7dd] to-[#B8FFD9]">
+
+
         <div className="absolute inset-0 -z-10">
+          {/* Your blur effects */}
           <div className="absolute top-40 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/2 via-transparent to-accent/2" />
@@ -84,13 +89,6 @@ export default function Home() {
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-primary/30 hover:bg-primary/5 text-base h-12 px-8 bg-transparent"
-                >
-                  Watch Demo
-                </Button>
               </div>
 
               {/* Stats */}
@@ -126,7 +124,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 2 - Middle */}
-                <div className="absolute top-32 right-12 w-full max-w-sm bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl rounded-2xl border border-accent/20 p-6 shadow-2xl shadow-accent/10 hover:shadow-accent/20 transition-all duration-500 hover:-translate-y-2">
+                <div className="absolute top-36 right-12 w-full max-w-sm bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl rounded-2xl border border-accent/20 p-6 shadow-2xl shadow-accent/10 hover:shadow-accent/20 transition-all duration-500 hover:-translate-y-2">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
                       <Pill className="w-6 h-6 text-primary" />
@@ -138,7 +136,7 @@ export default function Home() {
                 </div>
 
                 {/* Card 3 - Bottom */}
-                <div className="absolute top-64 right-24 w-full max-w-sm bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl rounded-2xl border border-primary/20 p-6 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2">
+                <div className="absolute top-72 right-24 w-full max-w-sm bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl rounded-2xl border border-primary/20 p-6 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center">
                       <MessageCircle className="w-6 h-6 text-accent" />
@@ -154,54 +152,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problem Statement Section */}
-      <section className="py-20 md:py-32 bg-muted/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">The Challenge in Rural Healthcare</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Rural areas face critical healthcare delivery challenges that impact patient outcomes
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 border-l-4 border-l-primary hover:shadow-lg transition-shadow">
-              <Users className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold mb-3">Specialist Shortage</h3>
-              <p className="text-muted-foreground">
-                General physicians make critical decisions without expert consultation, leading to compromised care
-                quality and patient outcomes.
-              </p>
-            </Card>
-            <Card className="p-8 border-l-4 border-l-accent hover:shadow-lg transition-shadow">
-              <Pill className="w-12 h-12 text-accent mb-4" />
-              <h3 className="text-xl font-bold mb-3">Medication Costs</h3>
-              <p className="text-muted-foreground">
-                High dependency on expensive branded medicines makes quality healthcare unaffordable for rural patients.
-              </p>
-            </Card>
-            <Card className="p-8 border-l-4 border-l-primary hover:shadow-lg transition-shadow">
-              <MessageCircle className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold mb-3">Language Barriers</h3>
-              <p className="text-muted-foreground">
-                Communication challenges due to diverse languages prevent access to critical healthcare information and
-                support.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
       <section className="py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Title */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Svasthya's Solution</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Transforming rural healthcare with intelligent technology and expert support
             </p>
           </div>
+
           <div className="grid md:grid-cols-2 gap-12">
+
+            {/* LEFT CONTENT */}
             <div className="space-y-6">
+
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
                   <Heart className="w-6 h-6 text-accent" />
@@ -214,6 +180,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                   <Pill className="w-6 h-6 text-primary" />
@@ -226,6 +193,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
                   <MessageCircle className="w-6 h-6 text-accent" />
@@ -238,6 +206,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
                   <Shield className="w-6 h-6 text-primary" />
@@ -250,18 +219,24 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+
             </div>
-            <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 flex items-center justify-center min-h-96">
-              <div className="text-center">
-                <div className="w-24 h-24 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-12 h-12 text-primary" />
-                </div>
-                <p className="text-muted-foreground">Platform features showcase coming soon</p>
-              </div>
+
+            {/* RIGHT IMAGE */}
+            <div className="flex items-center justify-center">
+              <Image
+                src="/dashboard.png"
+                alt="Svasthya platform illustration"
+                width={750}
+                height={650}
+                className="rounded-2xl shadow-lg object-cover"
+              />
             </div>
+
           </div>
         </div>
       </section>
+
 
       {/* Challenges Section with Modern Cards */}
       <section className="py-20 md:py-32 bg-muted/30">
@@ -382,7 +357,7 @@ export default function Home() {
               <p className="text-muted-foreground">Support Available</p>
             </div>
             <div className="text-center p-6 rounded-xl border border-border/40 bg-card/30 backdrop-blur hover:border-accent/30 transition-all duration-300">
-              <p className="text-3xl font-bold text-accent mb-2">15+</p>
+              <p className="text-3xl font-bold text-accent mb-2">7+</p>
               <p className="text-muted-foreground">Languages</p>
             </div>
             <div className="text-center p-6 rounded-xl border border-border/40 bg-card/30 backdrop-blur hover:border-primary/30 transition-all duration-300">
@@ -397,34 +372,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Showcase with Cards */}
-      <section className="py-20 md:py-32 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/20 mb-6">
-              <TrendingUp className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium">Key Features</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-balance mb-4">Powerful Tools for Better Care</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Instant Consultations", icon: Zap },
-              { title: "Drug Interactions", icon: Heart },
-              { title: "Patient History", icon: Users },
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="group h-40 rounded-2xl border border-primary/10 bg-card/50 backdrop-blur p-8 hover:border-primary/30 hover:shadow-xl transition-all duration-500 flex flex-col justify-between"
-              >
-                <feature.icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-500" />
-                <h3 className="text-lg font-bold text-foreground">{feature.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20 md:py-32 bg-gradient-to-r from-primary/10 to-accent/10 border-y border-primary/20">
@@ -439,13 +386,11 @@ export default function Home() {
                 size="lg"
                 className="bg-gradient-to-r from-primary to-accent hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 h-12 px-8 text-base"
               >
-                Start Free Trial
+                Get Started
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="h-12 px-8 text-base bg-transparent">
-              Contact Sales
-            </Button>
+
           </div>
         </div>
       </section>

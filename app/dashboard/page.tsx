@@ -5,6 +5,7 @@ import DashboardSidebar from "@/components/dashboard/sidebar"
 import ChatbotSection from "@/components/dashboard/chatbot-section"
 import MedicineAlternatives from "@/components/dashboard/medicine-alternative"
 import TranslatorSection from "@/components/dashboard/translator-section"
+import PatientRecords from "@/components/dashboard/patient-records"
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState("chat")
@@ -26,6 +27,7 @@ export default function DashboardPage() {
                         {activeTab === "chat" && <ChatbotSection />}
                         {activeTab === "medicines" && <MedicineAlternatives />}
                         {activeTab === "translator" && <TranslatorSection />}
+                        {activeTab === "patient-records" && <PatientRecords />}
                     </div>
                 </div>
             </div>
