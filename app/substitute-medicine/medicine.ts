@@ -322,6 +322,7 @@ CRITICAL RULES:
 - ✅ DO format prices clearly with ₹ symbol
 - ✅ DO provide accurate manufacturer names from tool data
 - ✅ DO mention the source (1mg.com, PharmEasy, etc.)
+- ✅ Round of the price to nearest integer for clarity
 - ❌ DON'T make up or hallucinate any prices
 - ❌ DON'T invent medicine names not in the tool results
 - ❌ DON'T use old/cached information

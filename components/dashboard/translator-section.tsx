@@ -362,19 +362,19 @@ export default function TranslatorSection() {
 
                         {/* Action Buttons */}
                         <div className="flex gap-2 justify-between">
-                            <Button onClick={handleTranslate} className="flex-1 bg-primary hover:bg-primary/90">
+                            {/* <Button onClick={handleTranslate} className="flex-1 bg-primary hover:bg-primary/90">
                                 Translate
-                            </Button>
+                            </Button> */}
                             {translatedText && (
                                 <>
-                                    <Button
+                                    {/* <Button
                                         variant="outline"
                                         size="icon"
                                         onClick={() => window.speechSynthesis.speak(new SpeechSynthesisUtterance(translatedText))}
                                         title="Speak"
                                     >
                                         <Volume2 className="w-4 h-4" />
-                                    </Button>
+                                    </Button> */}
                                     <Button variant="outline" size="icon" onClick={handleCopy}>
                                         {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
                                     </Button>
