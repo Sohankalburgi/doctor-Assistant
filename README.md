@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Doctor Assistant - Multi-Agent AI Healthcare Platform
 
-## Getting Started
+An advanced healthcare assistant powered by a **Multi-Agent AI System**. This application orchestrates a team of specialized medical agents to provide accurate, domain-specific preliminary diagnoses and health recommendations based on patient symptoms.
 
-First, run the development server:
+## 🌟 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🤖 Multi-Agent Architecture
+Unlike standard chatbots, this system uses a **Supervisor-Specialist** pattern to ensure expert-level responses:
+*   **Supervisor Agent**: Acts as the "General Practitioner". It analyzes patient input, determines the medical domain, and routes the case to the most appropriate specialist.
+*   **Specialized Agents**: A team of 10+ dedicated agents, each prompted with deep domain knowledge:
+    *   🫀 **Cardiologist**
+    *   🧴 **Dermatologist**
+    *   🧠 **Neurologist**
+    *   👁️ **Ophthalmologist**
+    *   🦴 **Orthopedist**
+    *   🤰 **Gynecologist**
+    *   👂 **ENT Specialist**
+    *   🧠 **Psychiatrist**
+    *   👶 **Pediatrician**
+    *   ⚧️ **Sexologist**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 💊 Medicine Alternatives
+*   **Smart Search**: Instantly find medicines and their details.
+*   **AI Recommendations**: Get suggestions for generic or cheaper alternatives with simplified dosage and side-effect information.
+*   **Visual Data**: Results presented in clean, readable tables.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ⚡ Powered by Groq & LangChain
+*   **Ultra-Fast Inference**: Utilizes Groq's LPU inference engine for near-instant AI responses.
+*   **Models Used**:
+    *   **Supervisor**: `qwen/qwen3-32b` for complex reasoning and routing.
+    *   **Specialists**: `llama-3.1-8b-instant` for rapid, domain-specific advice.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Technology Stack
 
-## Learn More
+*   **Frontend**: Next.js 16, React 19, Tailwind CSS v4
+*   **AI Orchestration**: LangChain.js, DeepAgents
+*   **LLM Provider**: Groq API
+*   **Database**: PostgreSQL, Prisma ORM
+*   **UI Components**: Radix UI, Lucide React
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Clone the repository**
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    # or
+    pnpm install
+    ```
+3.  **Set up Environment Variables**:
+    Create a `.env` file with your keys:
+    ```env
+    GROQ_API_KEY=your_groq_api_key
+    DATABASE_URL=your_postgres_url
+    ```
+4.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ How it Works
 
-## Deploy on Vercel
+1.  **User Input**: Patient submits symptoms (e.g., "fast heartbeat and chest pain").
+2.  **Supervisor Analysis**: The Supervisor Agent analyzes the text and identifies a "Cardiology" intent.
+3.  **Delegation**: The task is handed off to the **CardioAgent** tool.
+4.  **Specialist Diagnosis**: The CardioAgent reviews age, gender, and symptoms to generate a specific assessment, including:
+    *   Potential Issue Identification
+    *   Severity Warnings
+    *   Preventive Steps & Care
+5.  **Response**: The aggregated expert advice is presented back to the user.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> **Disclaimer**: This AI assistant is for informational purposes only and does not replace professional medical advice. Always consult a certified doctor for diagnosis and treatment.
